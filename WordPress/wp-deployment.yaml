@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wp
+  template:
+    metadata:
+      labels:
+        app: wp
+    spec:
+      containers:
+        - name: wp-container
+          image: wordpress:latest
+          env:
+          - name: WORDPRESS_DB_HOST
+            value: db-service
+          - name: WORDPRESS_DB_USER
+            value: wpuser
+          - name: WORDPRESS_DB_PASSWORD
+            value: wpsecret
+          - name: WORDPRESS_DB_NAME
+            value: wpdb
+          ports:
+          - containerPort: 80

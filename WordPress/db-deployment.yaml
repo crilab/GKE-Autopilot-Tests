@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db-container
+          image: mysql:latest
+          env:
+          - name: MYSQL_DATABASE
+            value: wpdb
+          - name: MYSQL_USER
+            value: wpuser
+          - name: MYSQL_PASSWORD
+            value: wpsecret
+          - name: MYSQL_RANDOM_ROOT_PASSWORD
+            value: '1'
+          ports:
+          - containerPort: 3306
