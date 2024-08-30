@@ -12,6 +12,7 @@ spec:
       labels:
         app: db
     spec:
+      runtimeClassName: gvisor
       containers:
         - name: db-container
           image: mysql:latest

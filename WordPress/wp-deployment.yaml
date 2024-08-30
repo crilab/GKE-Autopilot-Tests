@@ -12,6 +12,7 @@ spec:
       labels:
         app: wp
     spec:
+      runtimeClassName: gvisor
       containers:
         - name: wp-container
           image: wordpress:latest
