@@ -13,6 +13,10 @@ spec:
         app: wp
     spec:
       runtimeClassName: gvisor
+      volumes:
+        - name: wp-pvc-vol
+          persistentVolumeClaim:
+            claimName: wp-pvc
       containers:
         - name: wp-container
           image: wordpress:latest
@@ -27,3 +31,6 @@ spec:
             value: wpdb
           ports:
           - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: wp-pvc-vol
